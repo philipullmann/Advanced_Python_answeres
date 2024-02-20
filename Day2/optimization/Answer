@@ -1,0 +1,22 @@
+matmut.py
+Line27: result[i][j] += X[i][k] * Y[k][j] take around 86% of the total time (3s)
+
+
+
+euler72.py (increased number of primes for better Profiling)
+80% is from:
+21 -> Factorize
+with the highest contribution by: Line29: if(p > sqrt(n)):
+
+
+20% is from:
+50 -> fast_phi
+
+
+
+
+
+
+After optimization of matmut.py:
+Reduced time from 3s -> 131ms 
+Most time is consumed by import of numpy
