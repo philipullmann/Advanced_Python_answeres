@@ -15,7 +15,7 @@ Goal: Write an Algorithm with Fast input and fast searching for neighby atoms on
 
 <tr>
 <figure>
-    <td> <img src="pictures/sketch_draw.png" alt="Drawing"  width="1033" align="center" height="787"> </td>
+    <td> <img src="picture/sketch_draw.png" alt="Drawing"  width="1033" align="center" height="787"> </td>
     <figcaption><b>Figure 1</b>. Sketch of problem </figcaption>
 </figure>
 </tr> 
