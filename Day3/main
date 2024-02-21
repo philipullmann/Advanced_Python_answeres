@@ -1,0 +1,9 @@
+from classroom import Student, Teacher
+
+
+me = Student('Philip', 'Ullmann', 'Biochem') 
+me.printNameSubject()
+
+
+teach_per = Teacher("Filipe", "Maia", "Python Wizard Art")
+teach_per.printNameSubject()
