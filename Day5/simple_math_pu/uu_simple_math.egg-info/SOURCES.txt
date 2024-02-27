@@ -1,0 +1,5 @@
+setup.py
+uu_simple_math.egg-info/PKG-INFO
+uu_simple_math.egg-info/SOURCES.txt
+uu_simple_math.egg-info/dependency_links.txt
+uu_simple_math.egg-info/top_level.txt

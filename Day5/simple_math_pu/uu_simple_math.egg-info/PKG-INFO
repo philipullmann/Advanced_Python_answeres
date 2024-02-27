@@ -1,0 +1,8 @@
+Metadata-Version: 2.1
+Name: uu-simple-math
+Version: 1.0
+Summary: Simple Math
+Home-page: https://github.com/uu-python/travis-fib
+Author: Philip Ullmann
+Author-email: philip.ullmann@icm.uu.se
+License: BSD
