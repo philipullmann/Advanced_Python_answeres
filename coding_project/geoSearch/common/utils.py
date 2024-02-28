@@ -26,12 +26,29 @@ def load_molecule(file_path_mol: str) -> Chem.rdchem.Mol:
     file_path = Path(file_path_mol)
     file_extension = file_path.suffix.lower()
 
+    file_path_res = file_path.resolve()
+    print("Input: ", file_path_res)
+
     if file_extension == '.mol2':
         return Chem.MolFromMol2File(file_path_mol, removeHs=False)
     elif file_extension == '.pdb':
         return Chem.MolFromPDBFile(file_path_mol, removeHs=False)
     else:
         raise ValueError("Unsupported file type")
+
+
+def writeoutput(outputpath, hydro_list, final_output):
+
+    with open(Path(outputpath), 'w') as f:
+
+        for hydro, df in zip(hydro_list, final_output):
+
+                    f.write(hydro)
+                    f.write('\n')
+                    df.to_csv(f, sep='\t', index=False, header=None)  # Write DataFrame to file with tab separator
+                    f.write('\n')
+                    f.write('\n')
+
 
 
 def mol2df(mol) -> pd.DataFrame:

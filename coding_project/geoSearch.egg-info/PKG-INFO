@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: geoSearch
+Version: 0.0.1
+Summary: Program to find close atoms according to specific geometries
+Home-page: https://github.com/philipullmann/DescriptorNew.git
+Author: Philip Ullmann
+Author-email: philip.ullmann@icm.uu.se
+License: MIT
+Keywords: Database search,Database build
+Description-Content-Type: text/x-rst
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: rdkit
+Requires-Dist: scipy
+
+Problem: CUDA-accelerated version of Volume Based Distance Search in PDB files
+
+Problem Description:
+
+Working with 3-D coordinates of a PDB file can be quite time consuming especially when working with large Data.
+
+
+
+Goal: Write an Algorithm with Fast input and fast searching for neighby atoms on basis of cudaDF
+
+
+</br>
+</br>
+</br>
+
+<tr>
+<figure>
+    <td> <img src="picture/sketch_draw.png" alt="Drawing"  width="1033" align="center" height="787"> </td>
+    <figcaption><b>Figure 1</b>. Sketch of problem </figcaption>
+</figure>
+</tr> 

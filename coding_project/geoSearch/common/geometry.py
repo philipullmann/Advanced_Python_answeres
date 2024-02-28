@@ -1,7 +1,7 @@
 import numpy as np
-import utils
 import pandas as pd
 
+from . import utils 
 
 class geometries:
 	
