@@ -105,3 +105,24 @@ def euclid2spherical(coord1, coord2=None):
 
         return euclid2spherical(diff_vec)
 
+
+def normalize_angle(angle):
+
+    if angle <= -180:
+        angle += 360
+    if angle > 180:
+        angle -= 360
+    return angle
+
+
+def normalize_angles(theta_ls :pd.Series, phi_ls: pd.Series, basis_theta, basis_phi):
+
+    theta_norm = theta_ls - basis_theta
+    phi_norm = phi_ls - basis_phi
+
+    theta_norm = theta_norm.apply(normalize_angle)
+    phi_norm = phi_norm.apply(normalize_angle)
+
+    return theta_norm, phi_norm
+
+

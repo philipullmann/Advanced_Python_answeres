@@ -75,6 +75,7 @@ class cone(geometries):
 
     def compute_cone(self, atomlist):
 
+        # Compute radius and angles between basis atom (e.g. Carbon) and center atom (always hydrogen)
         radius, theta, phi = utils.euclid2spherical(self.center, self.bs_center)
 
         # First check if atom is even possibly part of cone (distance < surface line!
@@ -87,20 +88,26 @@ class cone(geometries):
         sph_coord = filter_atomlist.apply(lambda row: utils.euclid2spherical(row, np.array([self.x, self.y, self.z])), axis=1)
         sph_df = pd.DataFrame(sph_coord.tolist(), columns=['r', 'theta', 'phi'], index=sph_coord.index)
 
+
         # Filter cone
-        
-        # Defines angle boundares. Modulo to account for 179->180->-179
+        # Normalize angles (basis is theta, phi)
 
-        print(sph_df)
+        theta_ls = sph_df["theta"]
+        phi_ls = sph_df["phi"]
 
-        theta_bound_lower = (theta - self.angle/2) % 360
-        theta_bound_upper = (theta + self.angle/2) % 360
+        norm_theta, norm_phi= utils.normalize_angles(theta_ls, phi_ls, theta, phi)
+        sph_df["theta"], sph_df["phi"] = norm_theta, norm_phi
+
+        # Filter angles outside of cone
+        sph_df = sph_df[(sph_df["theta"])**2 + (sph_df["phi"])**2 < (self.angle/2)]
+
+        # Filter if angles and radius do exceed cone borders
+
+        theta_sinus= np.abs(np.sin(0.5*np.pi*(sph_df["theta"]/(0.5*self.angle))))
+        phi_sinus = np.abs(np.sin(0.5*np.pi*(sph_df["phi"]/(0.5*self.angle))))                  
+
+        radius_cutoff = self.length + ((max_distance - self.length) * theta_sinus * phi_sinus)
+        sph_df = sph_df[sph_df["r"] < radius_cutoff]
 
 
-        phi_bound_lower = (phi - self.angle/2) % 360
-        phi_bound_upper = (phi + self.angle/2) % 360
-
-
-
-
-        #print(sph_df)
+        return sph_df
