@@ -148,16 +148,21 @@ def iterate_mandelbulb(max_iter, z_row, power, escape_radius):
 
     x, y, z = z_row
 
+    x = np.float128(x)
+    y = np.float128(y)
+    z = np.float128(z)
+
 
     for _ in range(max_iter):
 
-        print(x,z,z)
+
         # Normal form
         r = np.linalg.norm([x, y, z])  
 
         # Polar Coord
         theta = np.arctan2(np.sqrt(x**2 + y**2), z)
         phi = np.arctan2(y, x)
+
 
         # Update point
         zr = r**power

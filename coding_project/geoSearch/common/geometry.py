@@ -116,10 +116,10 @@ class cone(geometries):
 
 class mandelbulb(geometries):
 
-    def __init__(self, center, power, max_iter=100):
+    def __init__(self, center, power, resolution):
 
         super().__init__(center)
-        self.max_iter = max_iter
+        self.max_iter = resolution
         self.power = power
 
     
@@ -128,7 +128,7 @@ class mandelbulb(geometries):
         # Normalize to center = (0,0,0)
         atomlist = atomlist - self.center
 
-        mandel_coord = atomlist.apply(lambda z : utils.iterate_mandelbulb(self.max_iter, z, self.power, escape_radius=100), axis=1)
+        mandel_coord = atomlist.apply(lambda z : utils.iterate_mandelbulb(self.max_iter, z, self.power, escape_radius=10000000), axis=1)
 
         mandel_coord = mandel_coord[mandel_coord==True]
 

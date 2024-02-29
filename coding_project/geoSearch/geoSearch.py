@@ -19,11 +19,11 @@ def parsArgumments() -> argparse.Namespace:
     ndArgs.add_argument("-geometry", help="Specify geometry [cube, sphere, cone]", type=str, required=True)
     ndArgs.add_argument("-o", help="Output file", type=str, required=True)
 
-    ndArgs.add_argument("-length", help="Radius of sphere or length of cube/cone", type=float, required=True) 
-    ndArgs.add_argument("-angle", help="Angle of cone. Not needed for other geometries", type=float, required=False) 
+    ndArgs.add_argument("-length", help="Radius of sphere or length of cube/cone [default=5]", type=float, required=False, default=5) 
+    ndArgs.add_argument("-angle", help="Angle of cone. Not needed for other geometries [default=20]", type=float, required=False, default=20) 
 
-    ndArgs.add_argument("-power", help="N-th power of mandelbulb. Not needed for other geometries", type=int, required=False) 
-
+    ndArgs.add_argument("-power", help="N-th power of mandelbulb. Not needed for other geometries [default=8]", type=int, default=8) 
+    ndArgs.add_argument("-resolution", help="Resolution/Iteration of the Mandelbulb. Not needed for other geometries [default=10]",type=int, default=10) 
     args = ndArgs.parse_args()
 
     return args
@@ -94,9 +94,6 @@ def main():
 
      elif args_dic["geometry"] == "cone":
 
-          if args_dic["angle"] == None:
-               print("ERROR: No angle selected!")
-               raise ValueError
 
           for index, atom in lig_h_df.iterrows():
 
@@ -115,12 +112,9 @@ def main():
 
           for index, atom in lig_h_df.iterrows():
                
-               if args_dic["power"] == None:
-                    print("ERROR: No Power selected")
-                    raise ValueError
 
                coord_ls = np.array([atom.X, atom.Y, atom.Z])
-               geoObj = geometry.mandelbulb(coord_ls, power=args_dic["power"])
+               geoObj = geometry.mandelbulb(coord_ls, power=args_dic["power"], resolution=args_dic["resolution"])
                atom_list = geoObj.compute_mandelbulb(prot_co_df)
                selected_df = prot_df[prot_df.index.isin(atom_list.index)]
 
