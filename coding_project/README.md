@@ -19,7 +19,7 @@ Currently supported are three types of geometries: <br />
 
 # Installation
 
-pip install -e coding_project <br />
+    pip install -e coding_project <br />
 
 
 # Usage
