@@ -20,16 +20,13 @@ Currently supported are three types of geometries: <br />
 
 Usage:
 
-    coneSearch -prot [path/to/prot.pdb] -lig [path/to/lig.pdb] -geometry [geometry] -length [length]
+    coneSearch -prot [path/to/prot.pdb] -lig [path/to/lig.pdb] -geometry [geometry] -length [length] -o [output]
 
 Special:
 
     -angle (only needed for cone)
     -power (only needed for mandelbulb)
 
-
-
-Goal: Write an Algorithm with Fast input and fast searching for neighby atoms on basis of cudaDF
 
 
 </br>
