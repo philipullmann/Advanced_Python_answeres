@@ -17,16 +17,20 @@ Currently supported are three types of geometries: <br />
 
 
 
+# Installation
 
-Usage:
+pip install -e coding_project <br />
+
+
+# Usage
 
     coneSearch -prot [path/to/prot.pdb] -lig [path/to/lig.pdb] -geometry [geometry] -length [length] -o [output]
 
 Special:
 
-    -angle (only needed for cone)
-    -power (only needed for mandelbulb)
-
+-angle (only needed for cone)
+-power (only needed for mandelbulb)
+-resolution (only needed for mandelbulb)
 
 
 </br>
