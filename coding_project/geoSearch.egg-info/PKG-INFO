@@ -13,6 +13,27 @@ Requires-Dist: pandas
 Requires-Dist: rdkit
 Requires-Dist: scipy
 
+
+## geoSearch
+
+**Author:** &nbsp;&nbsp;Philip Ullmann<br />
+**Email:**  &nbsp;&nbsp;&nbsp;philip.ullmann@icm.uu.se <br />
+**Place:** &nbsp;&nbsp;&nbsp;Jens Carlsson Lab. Uppsala University <br />
+**Date:** &nbsp;&nbsp;  2024 </br >
+**Current Version:** &nbsp;&nbsp;  0.0.1
+
+
+GeoSearch is a program to determine atoms which are close to ligand hydrogens. <br />
+Currently supported are three types of geometries: <br />
+- Cube
+- Sphere
+- Cone
+
+
+
+
+
+
 Problem: CUDA-accelerated version of Volume Based Distance Search in PDB files
 
 Problem Description:

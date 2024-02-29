@@ -143,3 +143,35 @@ def normalize_angles(theta_ls :pd.Series, phi_ls: pd.Series, basis_theta, basis_
     return theta_norm, phi_norm
 
 
+
+def iterate_mandelbulb(max_iter, z_row, power, escape_radius):
+
+    x, y, z = z_row
+
+
+    for _ in range(max_iter):
+
+        print(x,z,z)
+        # Normal form
+        r = np.linalg.norm([x, y, z])  
+
+        # Polar Coord
+        theta = np.arctan2(np.sqrt(x**2 + y**2), z)
+        phi = np.arctan2(y, x)
+
+        # Update point
+        zr = r**power
+        theta *= power
+        phi *= power
+        x = zr * np.sin(theta) * np.cos(phi)
+        y = zr * np.sin(theta) * np.sin(phi)
+        z = zr * np.cos(theta)
+
+        # Check if the point escapes
+        if np.linalg.norm([x, y, z]) > escape_radius:
+            return False
+
+
+
+
+    return True

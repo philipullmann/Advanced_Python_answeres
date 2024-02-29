@@ -111,3 +111,25 @@ class cone(geometries):
 
 
         return sph_df
+
+
+
+class mandelbulb(geometries):
+
+    def __init__(self, center, power, max_iter=100):
+
+        super().__init__(center)
+        self.max_iter = max_iter
+        self.power = power
+
+    
+    def compute_mandelbulb(self, atomlist):
+
+        # Normalize to center = (0,0,0)
+        atomlist = atomlist - self.center
+
+        mandel_coord = atomlist.apply(lambda z : utils.iterate_mandelbulb(self.max_iter, z, self.power, escape_radius=100), axis=1)
+
+        mandel_coord = mandel_coord[mandel_coord==True]
+
+        return mandel_coord

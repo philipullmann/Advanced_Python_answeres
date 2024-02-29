@@ -22,7 +22,7 @@ def parsArgumments() -> argparse.Namespace:
     ndArgs.add_argument("-length", help="Radius of sphere or length of cube/cone", type=float, required=True) 
     ndArgs.add_argument("-angle", help="Angle of cone. Not needed for other geometries", type=float, required=False) 
 
-
+    ndArgs.add_argument("-power", help="N-th power of mandelbulb. Not needed for other geometries", type=int, required=False) 
 
     args = ndArgs.parse_args()
 
@@ -39,7 +39,6 @@ def main():
 
      # Read Molecules
 
-     print(args_dic["prot"])
      prot = utils.load_molecule(args_dic["prot"])
      lig = utils.load_molecule(args_dic["lig"])
 
@@ -112,6 +111,22 @@ def main():
                hydro_pos.append(f"Hydrogen at: {atom.X}, {atom.Y}, {atom.Z}")
                final_out.append(selected_df)
 
+     elif args_dic["geometry"] == "mandelbulb":
+
+          for index, atom in lig_h_df.iterrows():
+               
+               if args_dic["power"] == None:
+                    print("ERROR: No Power selected")
+                    raise ValueError
+
+               coord_ls = np.array([atom.X, atom.Y, atom.Z])
+               geoObj = geometry.mandelbulb(coord_ls, power=args_dic["power"])
+               atom_list = geoObj.compute_mandelbulb(prot_co_df)
+               selected_df = prot_df[prot_df.index.isin(atom_list.index)]
+
+               hydro_pos.append(f"Hydrogen at: {atom.X}, {atom.Y}, {atom.Z}")
+               final_out.append(selected_df)
+
      else:
           raise ValueError
      
@@ -121,6 +136,8 @@ def main():
 
 
      utils.writeoutput(args_dic["o"], hydro_pos, final_out)
+
+     print("INFO: Finished run")
 
 
 
