@@ -13,17 +13,14 @@ Currently supported are three types of geometries: <br />
 - Cube
 - Sphere
 - Cone
+- Mandelbulb
 
 
 
 
+Usage:
 
-
-Problem: CUDA-accelerated version of Volume Based Distance Search in PDB files
-
-Problem Description:
-
-Working with 3-D coordinates of a PDB file can be quite time consuming especially when working with large Data.
+    coneSearch -prot [path/to/prot.pdb] -lig [path/to/lig.pdb] -geometry [geometry] -length [length]
 
 
 
